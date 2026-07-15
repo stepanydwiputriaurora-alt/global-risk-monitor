@@ -2,15 +2,37 @@
 
 @section('content')
 
-<div class="container mt-5">
+@include('components.hero')
 
-    <h1 class="fw-bold">
-        🌍 Global Risk Monitor
-    </h1>
+@include('components.dashboard-statistic')
 
-    <p class="text-secondary">
-        Global Supply Chain Risk Intelligence Platform
-    </p>
+<div class="row mt-4">
+
+    <!-- MAP -->
+    <div class="col-lg-8">
+
+        @include('components.map-card')
+
+    </div>
+
+    <!-- PANEL KANAN -->
+    <div class="col-lg-4">
+
+        @include('components.weather-card')
+
+        <div class="mt-4">
+
+            @include('components.currency-card')
+
+        </div>
+
+        <div class="mt-4">
+
+            @include('components.tracking-card')
+
+        </div>
+
+    </div>
 
 </div>
 
