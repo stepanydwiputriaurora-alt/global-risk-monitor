@@ -6,6 +6,1076 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* ==========================================================
+   GLOBAL
+========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#f5f7fb;
+    overflow-x:hidden;
+    font-family:'Inter','Segoe UI',sans-serif;
+    color:#0f172a;
+}
+
+.wrapper{
+    display:flex;
+    min-height:100vh;
+}
+
+/* ==========================================================
+   MAIN CONTENT
+========================================================== */
+
+.main-content{
+    margin-left:260px;
+    width:calc(100% - 260px);
+    padding:28px;
+    transition:.3s ease;
+}
+
+/* ==========================================================
+   COMMON COMPONENT
+========================================================== */
+
+.card{
+    border:none;
+    border-radius:22px;
+    box-shadow:0 10px 30px rgba(15,23,42,.06);
+    transition:.25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+}
+
+.btn{
+    border-radius:12px;
+    font-weight:600;
+}
+
+.form-control-lg,
+.form-select-lg{
+    height:56px;
+}
+
+.page-title{
+    font-size:34px;
+    font-weight:700;
+    color:#0f172a;
+}
+
+/* ==========================================================
+   SIDEBAR
+========================================================== */
+
+.sidebar{
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    width:260px;
+
+    height:100vh;
+
+    background:#ffffff;
+
+    border-right:1px solid #edf2f7;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    padding:20px;
+
+    z-index:999;
+
+}
+
+.sidebar-header{
+
+    margin-bottom:30px;
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    text-decoration:none;
+
+}
+
+.logo-icon{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:16px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:24px;
+
+    box-shadow:0 10px 20px rgba(37,99,235,.20);
+
+}
+
+.logo h4{
+
+    margin:0;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+}
+
+.logo small{
+
+    color:#94a3b8;
+
+}
+
+.sidebar-menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.menu-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:13px 16px;
+
+    border-radius:14px;
+
+    color:#64748b;
+
+    text-decoration:none;
+
+    transition:.25s ease;
+
+    font-weight:500;
+
+}
+
+.menu-item i{
+
+    width:22px;
+
+    text-align:center;
+
+    font-size:16px;
+
+}
+
+.menu-item:hover{
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    transform:translateX(5px);
+
+}
+
+.menu-item.active{
+
+    background:#2563eb;
+
+    color:#fff;
+
+    box-shadow:0 8px 18px rgba(37,99,235,.25);
+
+}
+
+.sidebar-footer{
+
+    border-top:1px solid #edf2f7;
+
+    padding-top:20px;
+
+}
+
+.api-status{
+
+    background:#f8fafc;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    font-size:14px;
+
+    color:#475569;
+
+}
+
+.dot{
+
+    width:10px;
+
+    height:10px;
+
+    display:inline-block;
+
+    border-radius:50%;
+
+    margin-right:8px;
+
+    background:#22c55e;
+
+}
+
+/* ===================================
+HERO
+=================================== */
+
+.hero-card{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:24px 30px;
+
+    margin-bottom:24px;
+
+    box-shadow:0 8px 25px rgba(15,23,42,.06);
+
+}
+
+.hero-card h4{
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    margin-bottom:18px;
+
+}
+
+.hero-input{
+
+    height:48px;
+
+    border-radius:12px;
+
+    border:1px solid #dbe4f0;
+
+}
+
+.hero-input:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 .2rem rgba(37,99,235,.12);
+
+}
+
+.hero-btn{
+
+    height:48px;
+
+    border-radius:12px;
+
+    padding:0 28px;
+
+    font-weight:600;
+
+}
+
+.hero-image-small{
+
+    width:100%;
+
+    max-width:280px;
+
+    object-fit:contain;
+
+}
+
+@media(max-width:992px){
+
+    .hero-card{
+
+        padding:20px;
+
+    }
+
+    .hero-image-small{
+
+        margin-top:20px;
+
+        max-width:220px;
+
+    }
+
+}
+
+/*=========================================================
+=              COUNTRY COMPARISON
+=========================================================*/
+
+.comparison-card{
+
+    border:none;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
+
+}
+
+.country-select{
+
+    height:48px;
+
+    border-radius:12px;
+
+    border:1px solid #e2e8f0;
+
+}
+
+.country-select:focus{
+
+    box-shadow:none;
+
+    border-color:#2563eb;
+
+}
+
+.comparison-table{
+
+    margin-bottom:0;
+
+}
+
+.comparison-table thead th{
+
+    background:#f8fafc;
+
+    color:#334155;
+
+    font-weight:700;
+
+    border-bottom:none;
+
+    padding:14px;
+
+}
+
+.comparison-table tbody td{
+
+    padding:16px 14px;
+
+    vertical-align:middle;
+
+}
+
+.comparison-table tbody tr{
+
+    border-bottom:1px solid #eef2f7;
+
+}
+
+.comparison-table tbody tr:last-child{
+
+    border-bottom:none;
+
+}
+
+.comparison-table tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+.comparison-table .badge{
+
+    font-size:12px;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+}
+
+/* ==========================================================
+   MAP CARD
+========================================================== */
+
+#worldMap{
+    width:100%;
+    height:520px;
+    border-radius:0 0 20px 20px;
+}
+
+.card-header{
+    border-bottom:1px solid #eef2f7;
+    background:#fff;
+    padding:20px 24px;
+}
+
+.card-header h5{
+    font-size:18px;
+    font-weight:700;
+    color:#0f172a;
+    margin:0;
+}
+
+.card-header small{
+    color:#64748b;
+}
+
+/* ===================================
+WEATHER CARD
+=================================== */
+
+.weather-card{
+
+    border:none;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
+
+}
+
+.weather-icon{
+
+    font-size:70px;
+
+    color:#fbbf24;
+
+}
+
+.weather-item{
+
+    background:#f8fafc;
+
+    border-radius:14px;
+
+    padding:14px;
+
+    transition:.25s;
+
+}
+
+.weather-item:hover{
+
+    transform:translateY(-4px);
+
+    background:#eef4ff;
+
+}
+
+/* ==========================================================
+   CARD ANIMATION
+========================================================== */
+
+.card{
+    animation:fadeUp .45s ease;
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(18px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================================
+   TRACKING CARD
+========================================================== */
+
+.tracking-card .card-body{
+    padding:24px;
+}
+
+.tracking-card .tracking-number{
+    font-size:28px;
+    font-weight:700;
+    color:#2563eb;
+}
+
+.status-badge{
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.status-pending{
+    background:#fff7ed;
+    color:#ea580c;
+}
+
+.status-transit{
+    background:#eff6ff;
+    color:#2563eb;
+}
+
+.status-arrived{
+    background:#ecfdf5;
+    color:#16a34a;
+}
+
+.status-delayed{
+    background:#fef2f2;
+    color:#dc2626;
+}
+
+/*=========================================================
+=                 CURRENCY CARD
+=========================================================*/
+
+.currency-card{
+
+    border: none;
+
+    border-radius: 20px;
+
+    box-shadow: 0 8px 24px rgba(15,23,42,.06);
+
+}
+
+.currency-highlight{
+
+    background:#f8fafc;
+
+    border:1px solid #edf2f7;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    text-align:center;
+
+}
+
+.exchange-rate{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    margin-top:10px;
+
+}
+
+.currency-unit{
+
+    font-size:20px;
+
+    font-weight:600;
+
+    color:#64748b;
+
+}
+
+.currency-value{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#2563eb;
+
+}
+
+.currency-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.currency-row{
+
+    display:grid;
+
+    grid-template-columns:1.5fr 1fr .8fr;
+
+    align-items:center;
+
+    padding:14px 12px;
+
+    border-bottom:1px solid #edf2f7;
+
+    border-radius:10px;
+
+    transition:.25s;
+
+}
+
+.currency-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.currency-row:hover{
+
+    background:#f8fbff;
+
+}
+
+.currency-row strong{
+
+    font-size:15px;
+
+}
+
+.currency-row div:nth-child(2){
+
+    font-weight:600;
+
+    color:#334155;
+
+}
+
+.currency-row div:nth-child(3){
+
+    text-align:right;
+
+    font-weight:700;
+
+}
+
+.currency-card .badge{
+
+    font-size:.85rem;
+
+    border-radius:999px;
+
+}
+
+@media(max-width:768px){
+
+    .currency-row{
+
+        grid-template-columns:1fr;
+
+        gap:6px;
+
+        text-align:left;
+
+    }
+
+    .currency-row div:nth-child(3){
+
+        text-align:left;
+
+    }
+
+    .currency-value{
+
+        font-size:28px;
+
+    }
+
+}
+
+
+/*=========================================================
+=                     NEWS CARD
+=========================================================*/
+
+.news-card{
+
+    border:none;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
+
+}
+
+.news-item{
+
+    display:flex;
+
+    gap:18px;
+
+    padding:18px 0;
+
+    border-bottom:1px solid #eef2f7;
+
+    transition:.25s;
+
+}
+
+.news-item:hover{
+
+    background:#f8fafc;
+
+    border-radius:14px;
+
+    padding-left:12px;
+
+    padding-right:12px;
+
+}
+
+.news-item img{
+
+    width:120px;
+
+    height:80px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+    flex-shrink:0;
+
+}
+
+.news-content{
+
+    flex:1;
+
+}
+
+.news-content h6{
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:#1e293b;
+
+    margin-bottom:6px;
+
+}
+
+.news-content small{
+
+    color:#64748b;
+
+    display:block;
+
+    margin-bottom:8px;
+
+}
+
+.news-content p{
+
+    font-size:14px;
+
+    color:#475569;
+
+    margin-bottom:10px;
+
+    line-height:1.5;
+
+}
+
+.news-content .badge{
+
+    font-size:12px;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+}
+
+@media(max-width:768px){
+
+    .news-item{
+
+        flex-direction:column;
+
+    }
+
+    .news-item img{
+
+        width:100%;
+
+        height:180px;
+
+    }
+
+}
+
+/* ==========================================================
+   FAVORITE CARD
+========================================================== */
+
+.favorite-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px 0;
+
+    border-bottom:1px solid #eef2f7;
+
+}
+
+.favorite-item:last-child{
+
+    border-bottom:none;
+
+}
+
+/*=========================================================
+=                 PORT DASHBOARD
+=========================================================*/
+
+.port-card{
+
+    border:none;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
+
+}
+
+.port-item{
+
+    padding:18px 0;
+
+    border-bottom:1px solid #eef2f7;
+
+}
+
+.port-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.port-item h6{
+
+    color:#1e293b;
+
+}
+
+.progress{
+
+    height:10px;
+
+    border-radius:999px;
+
+    background:#e2e8f0;
+
+}
+
+.progress-bar{
+
+    font-size:10px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================================
+   TABLE
+========================================================== */
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+.table th{
+
+    font-weight:600;
+
+    color:#334155;
+
+    border-bottom:2px solid #eef2f7;
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+}
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#f1f5f9;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:999px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width:1200px){
+
+    .hero-title{
+
+        font-size:36px;
+
+    }
+
+}
+
+@media (max-width:992px){
+
+    .main-content{
+
+        margin-left:0;
+
+        width:100%;
+
+        padding:20px;
+
+    }
+
+    .sidebar{
+
+        transform:translateX(-100%);
+
+    }
+
+    .hero-card{
+
+        padding:24px;
+
+    }
+
+    .hero-title{
+
+        font-size:32px;
+
+    }
+
+    .hero-image{
+
+        margin-top:24px;
+
+        max-width:320px;
+
+    }
+
+    .stat-card .card-body{
+
+        padding:20px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .page-title{
+
+        font-size:28px;
+
+    }
+
+    .hero-title{
+
+        font-size:28px;
+
+    }
+
+    .hero-text{
+
+        font-size:15px;
+
+    }
+
+    .hero-card{
+
+        padding:20px;
+
+    }
+
 }

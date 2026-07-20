@@ -1,130 +1,209 @@
-<div class="card border-0 shadow rounded-4">
+<div class="card dashboard-card currency-card h-100">
 
-    <div class="card-body">
+    {{-- Header --}}
+    <div class="card-header bg-transparent border-0 py-3">
 
-        <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex justify-content-between align-items-center">
 
             <h5 class="fw-bold mb-0">
 
-                Kurs Mata Uang (IDR)
+                <i class="fa-solid fa-money-bill-trend-up text-success me-2"></i>
+
+                Currency Exchange
 
             </h5>
 
-            <a href="#" class="text-decoration-none small">
+            <a href="#" class="small text-decoration-none fw-semibold">
 
-                Lihat Semua
+                View All
 
             </a>
 
         </div>
 
-        <h2 class="fw-bold">
+    </div>
 
-            16.320
+    {{-- Body --}}
+    <div class="card-body pt-0">
 
-        </h2>
+        {{-- Current Exchange --}}
+        <div class="currency-highlight mb-4">
 
-        <p class="text-success">
+            <small class="text-muted">
 
-            ▲ 0.35%
+                Current Exchange Rate
 
-        </p>
+            </small>
 
-        <table class="table table-borderless align-middle">
+            <h4 class="fw-bold mt-3">
 
-            <thead>
+                🇺🇸 USD
 
-                <tr>
+                <i class="fa-solid fa-arrow-right-long mx-2 text-secondary"></i>
 
-                    <th>Mata Uang</th>
-                    <th>Nilai</th>
-                    <th>Perubahan</th>
+                🇮🇩 IDR
 
-                </tr>
+            </h4>
 
-            </thead>
+            <div class="exchange-rate mt-3">
 
-            <tbody>
+                <span class="currency-unit">
 
-                <tr>
+                    1 USD
 
-                    <td>USD / IDR</td>
+                </span>
 
-                    <td>16.320</td>
+                <span class="mx-2 text-secondary">
 
-                    <td class="text-success">
+                    =
 
-                        ▲0.35%
+                </span>
 
-                    </td>
+                <span class="currency-value">
 
-                </tr>
+                    Rp16.320
 
-                <tr>
+                </span>
 
-                    <td>EUR / IDR</td>
+            </div>
 
-                    <td>18.910</td>
+            <div class="mt-3">
 
-                    <td class="text-success">
+                <span class="badge bg-success-subtle text-success px-3 py-2">
 
-                        ▲0.22%
+                    <i class="fa-solid fa-arrow-trend-up me-1"></i>
 
-                    </td>
+                    +0.35% Today
 
-                </tr>
+                </span>
 
-                <tr>
+            </div>
 
-                    <td>SGD / IDR</td>
+            <div class="small text-muted mt-3">
 
-                    <td>12.780</td>
+                <i class="fa-regular fa-clock me-1"></i>
 
-                    <td class="text-success">
+                Updated 10:31 WIB
 
-                        ▲0.18%
+            </div>
 
-                    </td>
+        </div>
 
-                </tr>
+        {{-- Currency List --}}
 
-                <tr>
+        <div class="currency-list">
 
-                    <td>CNY / IDR</td>
+            <div class="currency-row">
 
-                    <td>2.270</td>
+                <div>
 
-                    <td class="text-danger">
+                    <strong>🇺🇸 USD / IDR</strong>
 
-                        ▼0.05%
+                </div>
 
-                    </td>
+                <div>
 
-                </tr>
+                    Rp16.320
 
-                <tr>
+                </div>
 
-                    <td>JPY / IDR</td>
+                <div class="text-success fw-semibold">
 
-                    <td>112.45</td>
+                    ▲0.35%
 
-                    <td class="text-success">
+                </div>
 
-                        ▲0.12%
+            </div>
 
-                    </td>
+            <div class="currency-row">
 
-                </tr>
+                <div>
 
-            </tbody>
+                    <strong>🇪🇺 EUR / IDR</strong>
 
-        </table>
+                </div>
 
-        <small class="text-secondary">
+                <div>
 
-            Update : 10:31 WIB
+                    Rp18.910
 
-        </small>
+                </div>
+
+                <div class="text-success fw-semibold">
+
+                    ▲0.22%
+
+                </div>
+
+            </div>
+
+            <div class="currency-row">
+
+                <div>
+
+                    <strong>🇸🇬 SGD / IDR</strong>
+
+                </div>
+
+                <div>
+
+                    Rp12.780
+
+                </div>
+
+                <div class="text-success fw-semibold">
+
+                    ▲0.18%
+
+                </div>
+
+            </div>
+
+            <div class="currency-row">
+
+                <div>
+
+                    <strong>🇨🇳 CNY / IDR</strong>
+
+                </div>
+
+                <div>
+
+                    Rp2.270
+
+                </div>
+
+                <div class="text-danger fw-semibold">
+
+                    ▼0.05%
+
+                </div>
+
+            </div>
+
+            <div class="currency-row border-0">
+
+                <div>
+
+                    <strong>🇯🇵 JPY / IDR</strong>
+
+                </div>
+
+                <div>
+
+                    Rp112.45
+
+                </div>
+
+                <div class="text-success fw-semibold">
+
+                    ▲0.12%
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 

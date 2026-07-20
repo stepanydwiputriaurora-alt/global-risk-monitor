@@ -1,34 +1,32 @@
-<div class="row g-4 mt-2">
+<div class="row g-4 mb-4">
 
-    <div class="col-lg">
+    {{-- Active Shipment --}}
+    <div class="col-xl col-lg-6 col-md-6">
 
-        <div class="card border-0 shadow-sm rounded-4">
+        <div class="card stat-card h-100">
 
-            <div class="card-body d-flex justify-content-between align-items-center">
+            <div class="card-body d-flex align-items-center">
 
-                <div>
+                <div class="stat-icon bg-primary-subtle text-primary">
+                    <i class="fa-solid fa-box"></i>
+                </div>
 
-                    <small class="text-secondary">
+                <div class="ms-3">
 
+                    <small class="text-muted d-block">
                         Active Shipments
-
                     </small>
 
-                    <h2 class="fw-bold text-primary mb-0">
+                    <h3 class="fw-bold mb-1">
+                        {{ $activeShipments ?? 128 }}
+                    </h3>
 
-                        128
-
-                    </h2>
-
-                    <small class="text-success">
-
-                        ▲ 12.5%
-
+                    <small class="text-success fw-semibold">
+                        <i class="fa-solid fa-arrow-trend-up me-1"></i>
+                        +12.5% This Month
                     </small>
 
                 </div>
-
-                <i class="fa-solid fa-box fa-2x text-primary"></i>
 
             </div>
 
@@ -36,35 +34,34 @@
 
     </div>
 
-    <div class="col-lg">
+    {{-- Countries --}}
+    <div class="col-xl col-lg-6 col-md-6">
 
-        <div class="card border-0 shadow-sm rounded-4">
+        <div class="card stat-card h-100">
 
-            <div class="card-body d-flex justify-content-between align-items-center">
+            <div class="card-body d-flex align-items-center">
 
-                <div>
+                <div class="stat-icon bg-success-subtle text-success">
 
-                    <small class="text-secondary">
+                    <i class="fa-solid fa-earth-asia"></i>
 
+                </div>
+
+                <div class="ms-3">
+
+                    <small class="text-muted d-block">
                         Countries
-
                     </small>
 
-                    <h2 class="fw-bold text-success mb-0">
+                    <h3 class="fw-bold mb-1">
+                        {{ $countries ?? '250+' }}
+                    </h3>
 
-                        250+
-
-                    </h2>
-
-                    <small>
-
-                        Worldwide
-
+                    <small class="text-muted">
+                        Worldwide Coverage
                     </small>
 
                 </div>
-
-                <i class="fa-solid fa-earth-asia fa-2x text-success"></i>
 
             </div>
 
@@ -72,35 +69,34 @@
 
     </div>
 
-    <div class="col-lg">
+    {{-- High Risk --}}
+    <div class="col-xl col-lg-6 col-md-6">
 
-        <div class="card border-0 shadow-sm rounded-4">
+        <div class="card stat-card h-100">
 
-            <div class="card-body d-flex justify-content-between align-items-center">
+            <div class="card-body d-flex align-items-center">
 
-                <div>
+                <div class="stat-icon bg-warning-subtle text-warning">
 
-                    <small class="text-secondary">
+                    <i class="fa-solid fa-shield-halved"></i>
 
+                </div>
+
+                <div class="ms-3">
+
+                    <small class="text-muted d-block">
                         High Risk
-
                     </small>
 
-                    <h2 class="fw-bold text-warning mb-0">
+                    <h3 class="fw-bold mb-1">
+                        {{ $highRisk ?? 18 }}
+                    </h3>
 
-                        18
-
-                    </h2>
-
-                    <small class="text-danger">
-
-                        +3 Negara
-
+                    <small class="text-danger fw-semibold">
+                        3 New Alerts
                     </small>
 
                 </div>
-
-                <i class="fa-solid fa-triangle-exclamation fa-2x text-warning"></i>
 
             </div>
 
@@ -108,35 +104,34 @@
 
     </div>
 
-    <div class="col-lg">
+    {{-- Average Risk --}}
+    <div class="col-xl col-lg-6 col-md-6">
 
-        <div class="card border-0 shadow-sm rounded-4">
+        <div class="card stat-card h-100">
 
-            <div class="card-body d-flex justify-content-between align-items-center">
+            <div class="card-body d-flex align-items-center">
 
-                <div>
+                <div class="stat-icon bg-info-subtle text-info">
 
-                    <small class="text-secondary">
-
-                        Avg Risk
-
-                    </small>
-
-                    <h2 class="fw-bold text-info mb-0">
-
-                        36.7
-
-                    </h2>
-
-                    <small>
-
-                        Medium
-
-                    </small>
+                    <i class="fa-solid fa-chart-line"></i>
 
                 </div>
 
-                <i class="fa-solid fa-chart-column fa-2x text-info"></i>
+                <div class="ms-3">
+
+                    <small class="text-muted d-block">
+                        Average Risk
+                    </small>
+
+                    <h3 class="fw-bold mb-1">
+                        {{ $averageRisk ?? '36.7' }}
+                    </h3>
+
+                    <small class="text-info fw-semibold">
+                        Medium Risk
+                    </small>
+
+                </div>
 
             </div>
 
@@ -144,35 +139,34 @@
 
     </div>
 
-    <div class="col-lg">
+    {{-- Weather --}}
+    <div class="col-xl col-lg-6 col-md-6">
 
-        <div class="card border-0 shadow-sm rounded-4">
+        <div class="card stat-card h-100">
 
-            <div class="card-body d-flex justify-content-between align-items-center">
+            <div class="card-body d-flex align-items-center">
 
-                <div>
+                <div class="stat-icon bg-danger-subtle text-danger">
 
-                    <small class="text-secondary">
+                    <i class="fa-solid fa-cloud-bolt"></i>
 
-                        Weather Alert
+                </div>
 
+                <div class="ms-3">
+
+                    <small class="text-muted d-block">
+                        Extreme Weather
                     </small>
 
-                    <h2 class="fw-bold text-danger mb-0">
-
+                    <h3 class="fw-bold mb-1">
                         7
+                    </h3>
 
-                    </h2>
-
-                    <small>
-
-                        Country
-
+                    <small class="text-danger fw-semibold">
+                        Countries Affected
                     </small>
 
                 </div>
-
-                <i class="fa-solid fa-cloud-showers-heavy fa-2x text-danger"></i>
 
             </div>
 

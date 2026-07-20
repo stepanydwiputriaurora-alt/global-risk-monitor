@@ -6,51 +6,40 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-   public function up(): void
-{
-    Schema::create('shipments', function (Blueprint $table) {
-        $table->id();
+    public function up(): void
+    {
+        Schema::create('shipments', function (Blueprint $table) {
 
-        $table->string('tracking_number')->unique();
-        $table->string('product_name');
+            $table->id();
 
-        // Negara asal & tujuan
-        $table->string('origin_country');
-        $table->string('destination_country');
+            $table->string('tracking_number')->unique();
+            $table->string('product_name');
 
-        // Pelabuhan asal & tujuan
-        $table->string('origin_port');
-        $table->string('destination_port');
+            $table->string('origin_country');
+            $table->string('destination_country');
 
-        // Lokasi saat ini
-        $table->string('current_country')->nullable();
-        $table->string('current_port')->nullable();
+            $table->string('origin_port');
+            $table->string('destination_port');
 
-        // Nomor container (opsional tapi bagus untuk demo)
-        $table->string('container_number')->nullable();
+            $table->string('current_country')->nullable();
+            $table->string('current_port')->nullable();
 
-        // Status pengiriman
-        $table->enum('status', [
-            'Pending',
-            'In Transit',
-            'Delayed',
-            'Arrived'
-        ])->default('Pending');
+            $table->string('container_number')->nullable();
 
-        // Estimasi & realisasi
-        $table->date('estimated_arrival');
-        $table->date('actual_arrival')->nullable();
+            $table->enum('status', [
+                'Pending',
+                'In Transit',
+                'Delayed',
+                'Arrived'
+            ])->default('Pending');
 
-        $table->timestamps();
-    });
-}
+            $table->date('estimated_arrival');
+            $table->date('actual_arrival')->nullable();
 
-    /**
-     * Reverse the migrations.
-     */
+            $table->timestamps();
+        });
+    }
+
     public function down(): void
     {
         Schema::dropIfExists('shipments');

@@ -1,118 +1,100 @@
-<div class="position-fixed top-0 start-0 bg-white shadow vh-100"
-     style="width:250px;">
+<aside class="sidebar">
 
-    <div class="text-center p-4">
+    <!-- Header -->
+    <div>
 
-        <h3 class="fw-bold text-primary">
+        <div class="sidebar-header">
 
-            <i class="fa-solid fa-globe"></i>
+            <a href="{{ route('dashboard') }}" class="logo">
 
-            GRM
+                <div class="logo-icon">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
 
-        </h3>
+                <div>
+                    <h4>GRM</h4>
+                    <small>Global Risk Monitor</small>
+                </div>
 
-        <small class="text-secondary">
+            </a>
 
-            Global Risk Monitor
+        </div>
 
-        </small>
+        <!-- Menu -->
+        <nav class="sidebar-menu">
 
-    </div>
+            <a href="{{ route('dashboard') }}"
+                class="menu-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
 
-    <hr>
+            <a href="{{ route('tracking') }}"
+                class="menu-item {{ request()->routeIs('tracking') ? 'active' : '' }}">
+                <i class="fa-solid fa-box"></i>
+                <span>Tracking Shipment</span>
+            </a>
 
-    <div class="list-group list-group-flush">
+            <a href="{{ route('countries') }}"
+                class="menu-item {{ request()->routeIs('countries') ? 'active' : '' }}">
+                <i class="fa-solid fa-earth-asia"></i>
+                <span>Countries</span>
+            </a>
 
-        <a href="/"
-           class="list-group-item list-group-item-action active">
+            <a href="{{ route('weather') }}"
+                class="menu-item {{ request()->routeIs('weather') ? 'active' : '' }}">
+                <i class="fa-solid fa-cloud-sun"></i>
+                <span>Weather</span>
+            </a>
 
-            <i class="fa-solid fa-house"></i>
+            <a href="{{ route('currency') }}"
+                class="menu-item {{ request()->routeIs('currency') ? 'active' : '' }}">
+                <i class="fa-solid fa-money-bill-wave"></i>
+                <span>Currency</span>
+            </a>
 
-            Dashboard
+            <a href="{{ route('news') }}"
+                class="menu-item {{ request()->routeIs('news') ? 'active' : '' }}">
+                <i class="fa-solid fa-newspaper"></i>
+                <span>News</span>
+            </a>
 
-        </a>
+            <a href="{{ route('ports') }}"
+                class="menu-item {{ request()->routeIs('ports') ? 'active' : '' }}">
+                <i class="fa-solid fa-anchor"></i>
+                <span>Port Dashboard</span>
+            </a>
 
-        <a href="/tracking"
-           class="list-group-item list-group-item-action">
+            <a href="{{ route('analytics') }}"
+                class="menu-item {{ request()->routeIs('analytics') ? 'active' : '' }}">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Analytics</span>
+            </a>
 
-            <i class="fa-solid fa-box"></i>
+            <a href="{{ route('comparison') }}"
+                class="menu-item {{ request()->routeIs('comparison') ? 'active' : '' }}">
+                <i class="fa-solid fa-scale-balanced"></i>
+                <span>Comparison</span>
+            </a>
 
-            Tracking Shipment
+            <a href="{{ route('favorites') }}"
+                class="menu-item {{ request()->routeIs('favorites') ? 'active' : '' }}">
+                <i class="fa-solid fa-star"></i>
+                <span>Favorites</span>
+            </a>
 
-        </a>
-
-        <a href="/countries"
-           class="list-group-item list-group-item-action">
-
-            <i class="fa-solid fa-earth-asia"></i>
-
-            Global Countries
-
-        </a>
-
-        <a href="/weather"
-           class="list-group-item list-group-item-action">
-
-            <i class="fa-solid fa-cloud-sun"></i>
-
-            Weather Monitoring
-
-        </a>
-
-        <a href="/currency"
-           class="list-group-item list-group-item-action">
-
-            <i class="fa-solid fa-money-bill-wave"></i>
-
-            Currency Dashboard
-
-        </a>
-
-        <a href="/news"
-           class="list-group-item list-group-item-action">
-
-            <i class="fa-solid fa-newspaper"></i>
-
-            News Intelligence
-
-        </a>
-
-        <a href="/ports"
-           class="list-group-item list-group-item-action">
-
-            <i class="fa-solid fa-anchor"></i>
-
-            Port Dashboard
-
-        </a>
-
-        <a href="/analytics"
-           class="list-group-item list-group-item-action">
-
-            <i class="fa-solid fa-chart-line"></i>
-
-            Data Visualization
-
-        </a>
-
-        <a href="/comparison"
-           class="list-group-item list-group-item-action">
-
-            <i class="fa-solid fa-scale-balanced"></i>
-
-            Country Comparison
-
-        </a>
-
-        <a href="/favorites"
-           class="list-group-item list-group-item-action">
-
-            <i class="fa-solid fa-star"></i>
-
-            Favorite Monitoring
-
-        </a>
+        </nav>
 
     </div>
 
-</div>
+    <!-- Footer -->
+    <div class="sidebar-footer">
+
+        <div class="api-status">
+            <span class="dot"></span>
+            API Connected
+        </div>
+
+    </div>
+
+</aside>

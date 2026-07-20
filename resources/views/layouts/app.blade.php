@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Global Risk Monitor</title>
 
-    @vite(['resources/css/app.css','resources/js/app.js'])
+    @vite([
+        'resources/css/app.css',
+        'resources/js/app.js'
+    ])
 
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-    <style>
-
-        body{
-            background:#f5f7fb;
-        }
-
-        .main-content{
-
-            margin-left:260px;
-
-            padding:25px;
-
-        }
-
-    </style>
-
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-@include('components.sidebar')
+<div class="wrapper">
 
-<div class="main-content">
+    @include('components.sidebar')
 
-@include('components.topbar')
+    <main class="main-content">
 
-@yield('content')
+        <div class="container-fluid py-4">
+
+            @yield('content')
+
+        </div>
+
+    </main>
 
 </div>
 
@@ -46,4 +47,5 @@
 @stack('scripts')
 
 </body>
+
 </html>

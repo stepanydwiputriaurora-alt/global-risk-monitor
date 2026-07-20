@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Shipment;
 use Illuminate\Http\Request;
 
 class ShipmentController extends Controller
@@ -13,19 +14,23 @@ class ShipmentController extends Controller
 
     public function search(Request $request)
     {
-        $shipment = [
+        $request->validate([
+            'tracking_number' => 'required'
+        ]);
 
-            'tracking_number' => $request->tracking_number,
-            'product_name' => 'Laptop ASUS ROG',
-            'origin' => 'Shanghai, China',
-            'destination' => 'Belawan, Indonesia',
-            'current_location' => 'Port of Singapore',
-            'status' => 'In Transit',
-            'eta' => '20 July 2026',
-            'risk' => 'Medium',
-            'reason' => 'Heavy Rain in Singapore'
+        $shipment = Shipment::where(
+            'tracking_number',
+            $request->tracking_number
+        )->first();
 
-        ];
+        if (!$shipment) {
+
+            return back()->with(
+                'error',
+                'Tracking Number tidak ditemukan.'
+            );
+
+        }
 
         return view('shipments.detail', compact('shipment'));
     }

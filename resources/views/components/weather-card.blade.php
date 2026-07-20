@@ -1,106 +1,99 @@
-<div class="card border-0 shadow rounded-4 h-100">
+<div class="card dashboard-card weather-card h-100">
 
-    <div class="card-body">
+    {{-- Header --}}
+    <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-start">
 
-        <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
 
-            <h5 class="fw-bold mb-0">
-
-                Cuaca Saat Ini
-
+            <h5 class="fw-bold mb-1">
+                <i class="fa-solid fa-cloud-sun text-warning me-2"></i>
+                Weather
             </h5>
 
-            <a href="#" class="text-decoration-none small">
-
-                Lihat Semua
-
-            </a>
-
-        </div>
-
-        <div class="text-center">
-
-            <i class="fa-solid fa-cloud-sun-rain text-warning fa-4x mb-3"></i>
-
-            <h1 class="fw-bold">
-
-                28°C
-
-            </h1>
-
-            <p class="mb-1">
-
-                Hujan Ringan
-
-            </p>
-
-            <small class="text-secondary">
-
-                Jakarta, Indonesia
-
+            <small class="text-muted">
+                📍 Indonesia
             </small>
 
         </div>
 
-        <hr>
+        <span class="badge bg-success-subtle text-success">
+            Live
+        </span>
 
-        <div class="row text-center">
+    </div>
 
-            <div class="col-4">
+    {{-- Body --}}
+    <div class="card-body">
 
-                <small class="text-secondary">
+        <div class="text-center mb-4">
 
-                    Kelembapan
+            <i class="fa-solid fa-sun weather-icon"></i>
 
-                </small>
+            <h2 class="mt-3 mb-1 fw-bold">
+                29°C
+            </h2>
 
-                <h6>
-
-                    82%
-
-                </h6>
-
-            </div>
-
-            <div class="col-4">
-
-                <small class="text-secondary">
-
-                    Angin
-
-                </small>
-
-                <h6>
-
-                    12 km/h
-
-                </h6>
-
-            </div>
-
-            <div class="col-4">
-
-                <small class="text-secondary">
-
-                    Hujan
-
-                </small>
-
-                <h6>
-
-                    3.2 mm
-
-                </h6>
-
-            </div>
+            <p class="text-muted mb-0">
+                Sunny
+            </p>
 
         </div>
 
-        <div class="alert alert-danger mt-3 mb-0">
+        <div class="row text-center g-3">
 
-            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div class="col-4">
 
-            Hujan lebat diperkirakan dalam 24 jam.
+                <div class="weather-item">
+
+                    <i class="fa-solid fa-droplet text-primary mb-2"></i>
+
+                    <div class="fw-semibold">
+                        78%
+                    </div>
+
+                    <small class="text-muted">
+                        Humidity
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="col-4">
+
+                <div class="weather-item">
+
+                    <i class="fa-solid fa-wind text-info mb-2"></i>
+
+                    <div class="fw-semibold">
+                        10 km/h
+                    </div>
+
+                    <small class="text-muted">
+                        Wind
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="col-4">
+
+                <div class="weather-item">
+
+                    <i class="fa-solid fa-cloud-rain text-secondary mb-2"></i>
+
+                    <div class="fw-semibold">
+                        5%
+                    </div>
+
+                    <small class="text-muted">
+                        Rain
+                    </small>
+
+                </div>
+
+            </div>
 
         </div>
 

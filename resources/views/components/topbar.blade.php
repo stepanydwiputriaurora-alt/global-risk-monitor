@@ -1,24 +1,70 @@
-<div class="card border-0 shadow-sm mb-4">
+<div class="topbar">
 
-    <div class="card-body">
+    <div class="topbar-left">
 
-        <div class="d-flex justify-content-between align-items-center">
+        <div>
 
-            <div>
+            <h3 class="page-title mb-1">
+                Dashboard
+            </h3>
 
-                <h4 class="fw-bold mb-0">
+            <small class="text-muted">
+                Welcome back to Global Risk Monitor
+            </small>
 
-                    Dashboard
+        </div>
 
-                </h4>
+    </div>
+
+    <div class="topbar-right">
+
+        <!-- Search -->
+        <div class="search-box">
+
+            <i class="fa-solid fa-search"></i>
+
+            <input
+                type="text"
+                placeholder="Search...">
+
+        </div>
+
+        <!-- Notification -->
+        <button class="icon-btn">
+
+            <i class="fa-regular fa-bell"></i>
+
+        </button>
+
+        <!-- Settings -->
+        <button class="icon-btn">
+
+            <i class="fa-solid fa-gear"></i>
+
+        </button>
+
+        <!-- Profile -->
+        <div class="profile">
+
+            <div class="profile-img">
+
+                S
 
             </div>
 
             <div>
 
-                <i class="fa-regular fa-bell fs-5 me-4"></i>
+                <div class="fw-semibold">
 
-                <i class="fa-regular fa-user fs-5"></i>
+                    Stepany
+
+                </div>
+
+                <small class="text-muted">
+
+                    Administrator
+
+                </small>
 
             </div>
 

@@ -1,81 +1,39 @@
-<div class="card border-0 shadow-sm rounded-4 mb-4">
+<div class="hero-card">
 
-    <div class="card-body p-4">
+    <div class="row align-items-center">
 
-        <div class="row align-items-center">
+        {{-- LEFT --}}
+        <div class="col-lg-8">
 
-            <!-- Kiri -->
-            <div class="col-lg-7">
+            <h4 class="fw-bold mb-3">
+                Track Your Shipment
+            </h4>
 
-                <span class="badge bg-primary px-3 py-2 mb-3">
-                    Real-Time Supply Chain Intelligence
-                </span>
+            {{-- Tracking --}}
+            <form action="{{ route('tracking.search') }}" method="GET">
 
-                <h1 class="display-4 fw-bold mb-3">
-                    🌍 Global Risk Monitor
-                </h1>
+                <div class="mb-3">
 
-                <p class="text-secondary fs-5">
-                    Monitor shipment status, country risks, weather,
-                    exchange rates, and global news in one platform.
-                </p>
+                    <input
+                        type="text"
+                        name="tracking_number"
+                        class="form-control hero-input"
+                        placeholder="Masukkan Tracking Number (Contoh: GRM-2026-000001)">
 
-            </div>
+                </div>
 
-            <!-- Kanan -->
-            <div class="col-lg-5 text-center">
+                <button class="btn btn-primary hero-btn">
 
-                <img
-                    src="https://cdn-icons-png.flaticon.com/512/3082/3082037.png"
-                    class="img-fluid"
-                    style="max-height:260px;">
+                    <i class="fa-solid fa-magnifying-glass me-2"></i>
 
-            </div>
+                    Search
 
-        </div>
+                </button>
 
-        <hr class="my-4">
+            </form>
 
-        <div class="row">
-
-            <!-- Tracking -->
-            <div class="col-lg-8">
-
-                <h4 class="fw-bold mb-3">
-
-                    <i class="fa-solid fa-magnifying-glass text-primary"></i>
-
-                    Track Your Shipment
-
-                </h4>
-
-                <form action="{{ route('tracking.search') }}" method="GET">
-
-                    <div class="input-group input-group-lg">
-
-                        <input
-                            type="text"
-                            name="tracking_number"
-                            class="form-control"
-                            placeholder="Masukkan Tracking Number (Contoh : GRM-2026-000001)"
-                            required>
-
-                        <button class="btn btn-primary px-4">
-
-                            <i class="fa-solid fa-search"></i>
-
-                            Search
-
-                        </button>
-
-                    </div>
-
-                </form>
-
-            </div>
-
-            <!-- Pilih Negara -->
-            <div class="col-lg-4">
+            {{-- Country --}}
+            <div class="mt-4">
 
                 <label class="form-label fw-semibold">
 
@@ -83,28 +41,46 @@
 
                 </label>
 
-                <select class="form-select mb-2">
+                <div class="row g-3">
 
-                    <option selected>🇮🇩 Indonesia</option>
-                    <option>🇸🇬 Singapore</option>
-                    <option>🇲🇾 Malaysia</option>
-                    <option>🇹🇭 Thailand</option>
-                    <option>🇨🇳 China</option>
-                    <option>🇯🇵 Japan</option>
-                    <option>🇰🇷 South Korea</option>
-                    <option>🇺🇸 United States</option>
+                    <div class="col-md-8">
 
-                </select>
+                        <select class="form-select hero-input">
 
-                <button class="btn btn-outline-primary w-100">
+                            <option>🇮🇩 Indonesia</option>
+                            <option>🇸🇬 Singapore</option>
+                            <option>🇲🇾 Malaysia</option>
+                            <option>🇨🇳 China</option>
 
-                    <i class="fa-solid fa-chart-column"></i>
+                        </select>
 
-                    Lihat Analisis
+                    </div>
 
-                </button>
+                    <div class="col-md-4">
+
+                        <button class="btn btn-outline-primary hero-btn w-100">
+
+                            <i class="fa-solid fa-chart-line me-2"></i>
+
+                            Lihat Analisis
+
+                        </button>
+
+                    </div>
+
+                </div>
 
             </div>
+
+        </div>
+
+        {{-- RIGHT --}}
+        <div class="col-lg-4 text-center">
+
+            <img
+                src="{{ asset('images/cargo-ship.png') }}"
+                class="hero-image-small"
+                alt="Cargo Ship">
 
         </div>
 

@@ -3,30 +3,21 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShipmentController;
 
-Route::view('/', 'dashboard.index')->name('home');
+Route::view('/', 'dashboard.index')->name('dashboard');
 
-Route::get('/tracking',[ShipmentController::class,'search'])->name('tracking.search');
+Route::view('/tracking', 'tracking.index')->name('tracking');
 
-/*
-|--------------------------------------------------------------------------
-| Dashboard
-|--------------------------------------------------------------------------
-*/
+Route::get('/tracking/search', [ShipmentController::class, 'search'])
+    ->name('tracking.search');
 
-Route::view('/countries','countries.index');
-Route::view('/weather','weather.index');
-Route::view('/currency','currency.index');
-Route::view('/news','news.index');
-Route::view('/ports','ports.index');
-Route::view('/analytics','analytics.index');
-Route::view('/comparison','comparison.index');
-Route::view('/favorites','favorites.index');
+Route::view('/countries', 'countries.index')->name('countries');
+Route::view('/weather', 'weather.index')->name('weather');
+Route::view('/currency', 'currency.index')->name('currency');
+Route::view('/news', 'news.index')->name('news');
+Route::view('/ports', 'ports.index')->name('ports');
+Route::view('/analytics', 'analytics.index')->name('analytics');
+Route::view('/comparison', 'comparison.index')->name('comparison');
+Route::view('/favorites', 'favorites.index')->name('favorites');
 
-/*
-|--------------------------------------------------------------------------
-| Admin
-|--------------------------------------------------------------------------
-*/
-
-Route::view('/admin/login','admin.login');
-Route::view('/admin/dashboard','admin.dashboard');
+Route::view('/admin/login', 'admin.login')->name('admin.login');
+Route::view('/admin/dashboard', 'admin.dashboard')->name('admin.dashboard');
