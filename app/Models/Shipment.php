@@ -23,4 +23,9 @@ class Shipment extends Model
         'estimated_arrival',
         'actual_arrival',
     ];
+
+    public function events()
+    {
+        return $this->hasMany(ShipmentEvent::class)->orderBy('date_time', 'desc');
+    }
 }

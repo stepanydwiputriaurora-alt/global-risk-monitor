@@ -60,9 +60,7 @@
                 </span>
 
                 <span class="currency-value">
-
-                    Rp16.320
-
+                    Memuat...
                 </span>
 
             </div>
@@ -92,119 +90,68 @@
         {{-- Currency List --}}
 
         <div class="currency-list">
-
-            <div class="currency-row">
-
-                <div>
-
-                    <strong>🇺🇸 USD / IDR</strong>
-
-                </div>
-
-                <div>
-
-                    Rp16.320
-
-                </div>
-
-                <div class="text-success fw-semibold">
-
-                    ▲0.35%
-
-                </div>
-
+            <div class="text-center text-muted py-3">
+                <div class="spinner-border spinner-border-sm me-2" role="status"></div> Memuat kurs mata uang...
             </div>
-
-            <div class="currency-row">
-
-                <div>
-
-                    <strong>🇪🇺 EUR / IDR</strong>
-
-                </div>
-
-                <div>
-
-                    Rp18.910
-
-                </div>
-
-                <div class="text-success fw-semibold">
-
-                    ▲0.22%
-
-                </div>
-
-            </div>
-
-            <div class="currency-row">
-
-                <div>
-
-                    <strong>🇸🇬 SGD / IDR</strong>
-
-                </div>
-
-                <div>
-
-                    Rp12.780
-
-                </div>
-
-                <div class="text-success fw-semibold">
-
-                    ▲0.18%
-
-                </div>
-
-            </div>
-
-            <div class="currency-row">
-
-                <div>
-
-                    <strong>🇨🇳 CNY / IDR</strong>
-
-                </div>
-
-                <div>
-
-                    Rp2.270
-
-                </div>
-
-                <div class="text-danger fw-semibold">
-
-                    ▼0.05%
-
-                </div>
-
-            </div>
-
-            <div class="currency-row border-0">
-
-                <div>
-
-                    <strong>🇯🇵 JPY / IDR</strong>
-
-                </div>
-
-                <div>
-
-                    Rp112.45
-
-                </div>
-
-                <div class="text-success fw-semibold">
-
-                    ▲0.12%
-
-                </div>
-
-            </div>
-
         </div>
 
     </div>
 
 </div>
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('https://api.exchangerate-api.com/v4/latest/USD')
+            .then(res => res.json())
+            .then(data => {
+                if(data && data.rates) {
+                    const idr = data.rates.IDR;
+                    const eur = data.rates.EUR;
+                    const sgd = data.rates.SGD;
+                    const cny = data.rates.CNY;
+                    const jpy = data.rates.JPY;
+
+                    // Update main highlight
+                    document.querySelector('.currency-value').innerText = `Rp${idr.toLocaleString('id-ID')}`;
+                    
+                    // Update list
+                    const listContainer = document.querySelector('.currency-list');
+                    listContainer.innerHTML = `
+                        <div class="currency-row">
+                            <div><strong>🇺🇸 USD / IDR</strong></div>
+                            <div>Rp${idr.toLocaleString('id-ID')}</div>
+                            <div class="text-success fw-semibold">Live</div>
+                        </div>
+                        <div class="currency-row">
+                            <div><strong>🇪🇺 EUR / IDR</strong></div>
+                            <div>Rp${((1/eur)*idr).toLocaleString('id-ID', {maximumFractionDigits: 0})}</div>
+                            <div class="text-success fw-semibold">Live</div>
+                        </div>
+                        <div class="currency-row">
+                            <div><strong>🇸🇬 SGD / IDR</strong></div>
+                            <div>Rp${((1/sgd)*idr).toLocaleString('id-ID', {maximumFractionDigits: 0})}</div>
+                            <div class="text-success fw-semibold">Live</div>
+                        </div>
+                        <div class="currency-row">
+                            <div><strong>🇨🇳 CNY / IDR</strong></div>
+                            <div>Rp${((1/cny)*idr).toLocaleString('id-ID', {maximumFractionDigits: 0})}</div>
+                            <div class="text-success fw-semibold">Live</div>
+                        </div>
+                        <div class="currency-row border-0">
+                            <div><strong>🇯🇵 JPY / IDR</strong></div>
+                            <div>Rp${((1/jpy)*idr).toLocaleString('id-ID', {maximumFractionDigits: 0})}</div>
+                            <div class="text-success fw-semibold">Live</div>
+                        </div>
+                    `;
+                    
+                    // Update timestamp
+                    const date = new Date(data.time_last_updated * 1000);
+                    const timeString = date.toLocaleTimeString('id-ID', {hour: '2-digit', minute:'2-digit'});
+                    document.querySelector('.currency-highlight .small.text-muted:last-child').innerHTML = `<i class="fa-regular fa-clock me-1"></i>Updated ${timeString} WIB`;
+                }
+            })
+            .catch(err => console.error("Currency API error:", err));
+    });
+</script>
+@endpush

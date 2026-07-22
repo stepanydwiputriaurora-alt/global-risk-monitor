@@ -37,19 +37,13 @@ MAP + WEATHER
 
 
 {{-- ===========================
-TRACKING + CURRENCY
+COMPARISON (full width)
 =========================== --}}
 <div class="row g-4 mt-1">
 
-    <div class="col-xl-8 col-lg-8">
+    <div class="col-12">
 
-        @include('components.tracking-card')
-
-    </div>
-
-    <div class="col-xl-4 col-lg-4">
-
-        @include('components.currency-card')
+        @include('components.comparison-card')
 
     </div>
 
@@ -57,7 +51,7 @@ TRACKING + CURRENCY
 
 
 {{-- ===========================
-CHART + NEWS
+CHART + NEWS + CURRENCY
 =========================== --}}
 <div class="row g-4 mt-1">
 
@@ -76,29 +70,6 @@ CHART + NEWS
 </div>
 
 
-{{-- ===========================
-BOTTOM SECTION
-=========================== --}}
-<div class="row g-4 mt-1 mb-3">
 
-    <div class="col-xl-4 col-lg-4 col-md-6">
-
-        @include('components.comparison-card')
-
-    </div>
-
-    <div class="col-xl-4 col-lg-4 col-md-6">
-
-        @include('components.favorite-card')
-
-    </div>
-
-    <div class="col-xl-4 col-lg-4">
-
-        @include('components.port-map-card')
-
-    </div>
-
-</div>
 
 @endsection

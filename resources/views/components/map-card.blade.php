@@ -91,39 +91,29 @@ document.addEventListener("DOMContentLoaded", function () {
     let map = L.map('worldMap').setView([20, 10], 2);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-
         attribution: '© OpenStreetMap'
-
     }).addTo(map);
 
-    const locations = [
+    const countryMarkers = @json($countryMarkers ?? []);
 
-        [[-6.2088,106.8456], "<b>Indonesia</b><br>Medium Risk"],
-        [[1.3521,103.8198], "<b>Singapore</b><br>Low Risk"],
-        [[3.1390,101.6869], "<b>Malaysia</b><br>Medium Risk"],
-        [[13.7563,100.5018], "<b>Thailand</b><br>Medium Risk"],
-        [[39.9042,116.4074], "<b>China</b><br>High Risk"],
-        [[35.6762,139.6503], "<b>Japan</b><br>Low Risk"],
-        [[37.5665,126.9780], "<b>South Korea</b><br>Low Risk"],
-        [[-35.2809,149.1300], "<b>Australia</b><br>Low Risk"],
-        [[38.9072,-77.0369], "<b>United States</b><br>Medium Risk"]
-
-    ];
-
-    locations.forEach(location => {
-
-        L.marker(location[0])
-
-            .addTo(map)
-
-            .bindPopup(location[1]);
-
+    countryMarkers.forEach(function(c) {
+        if (c.lat && c.lng) {
+            L.marker([c.lat, c.lng])
+                .addTo(map)
+                .bindPopup(
+                    '<div style="min-width:160px;">' +
+                    '<img src="' + c.flag + '" width="24" style="border-radius:3px;border:1px solid #eee;" class="me-2">' +
+                    '<b>' + c.name + '</b><br>' +
+                    '<small class="text-muted">Capital: ' + c.capital + '</small><br>' +
+                    '<small class="text-muted">Region: ' + c.region + '</small><br>' +
+                    '<small class="text-muted">Population: ' + c.population + '</small>' +
+                    '</div>'
+                );
+        }
     });
 
     setTimeout(() => {
-
         map.invalidateSize();
-
     }, 300);
 
 });

@@ -18,7 +18,7 @@
                     </small>
 
                     <h3 class="fw-bold mb-1">
-                        {{ $activeShipments ?? 128 }}
+                        {{ $activeShipments }}
                     </h3>
 
                     <small class="text-success fw-semibold">
@@ -54,11 +54,11 @@
                     </small>
 
                     <h3 class="fw-bold mb-1">
-                        {{ $countries ?? '250+' }}
+                        {{ $totalCountries }}
                     </h3>
 
                     <small class="text-muted">
-                        Worldwide Coverage
+                        Worldwide Coverage (Realtime)
                     </small>
 
                 </div>
@@ -89,11 +89,11 @@
                     </small>
 
                     <h3 class="fw-bold mb-1">
-                        {{ $highRisk ?? 18 }}
+                        {{ $delayedShipments }}
                     </h3>
 
                     <small class="text-danger fw-semibold">
-                        3 New Alerts
+                        Delayed Shipments
                     </small>
 
                 </div>
@@ -124,11 +124,11 @@
                     </small>
 
                     <h3 class="fw-bold mb-1">
-                        {{ $averageRisk ?? '36.7' }}
+                        {{ $averageRisk ?? 0 }}%
                     </h3>
 
-                    <small class="text-info fw-semibold">
-                        Medium Risk
+                    <small class="{{ ($averageRisk ?? 0) < 30 ? 'text-success' : (($averageRisk ?? 0) < 60 ? 'text-warning' : 'text-danger') }} fw-semibold">
+                        {{ ($averageRisk ?? 0) < 30 ? '🟢 Low Risk' : (($averageRisk ?? 0) < 60 ? '🟡 Medium Risk' : '🔴 High Risk') }}
                     </small>
 
                 </div>
@@ -159,11 +159,11 @@
                     </small>
 
                     <h3 class="fw-bold mb-1">
-                        7
+                        {{ $extremeWeatherCount ?? 0 }}
                     </h3>
 
                     <small class="text-danger fw-semibold">
-                        Countries Affected
+                        <i class="fa-solid fa-satellite-dish me-1"></i>Countries Affected
                     </small>
 
                 </div>

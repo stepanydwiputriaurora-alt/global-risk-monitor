@@ -6,59 +6,29 @@
         <div class="col-lg-8">
 
             <h4 class="fw-bold mb-3">
-                Track Your Shipment
+                Pilih Negara untuk Analisis Risiko
             </h4>
 
-            {{-- Tracking --}}
-            <form action="{{ route('tracking.search') }}" method="GET">
+        {{-- Country --}}
+        <div class="mt-2">
 
-                <div class="mb-3">
-
-                    <input
-                        type="text"
-                        name="tracking_number"
-                        class="form-control hero-input"
-                        placeholder="Masukkan Tracking Number (Contoh: GRM-2026-000001)">
-
-                </div>
-
-                <button class="btn btn-primary hero-btn">
-
-                    <i class="fa-solid fa-magnifying-glass me-2"></i>
-
-                    Search
-
-                </button>
-
-            </form>
-
-            {{-- Country --}}
-            <div class="mt-4">
-
-                <label class="form-label fw-semibold">
-
-                    Pilih Negara untuk Analisis
-
-                </label>
+            <form action="{{ route('countries') }}" method="GET">
 
                 <div class="row g-3">
 
                     <div class="col-md-8">
 
-                        <select class="form-select hero-input">
-
-                            <option>🇮🇩 Indonesia</option>
-                            <option>🇸🇬 Singapore</option>
-                            <option>🇲🇾 Malaysia</option>
-                            <option>🇨🇳 China</option>
-
+                        <select name="country" class="form-select hero-input">
+                            @foreach($countries as $c)
+                                <option value="{{ $c['name'] }}">{{ $c['name'] }}</option>
+                            @endforeach
                         </select>
 
                     </div>
 
                     <div class="col-md-4">
 
-                        <button class="btn btn-outline-primary hero-btn w-100">
+                        <button type="submit" class="btn btn-outline-primary hero-btn w-100">
 
                             <i class="fa-solid fa-chart-line me-2"></i>
 
@@ -70,7 +40,9 @@
 
                 </div>
 
-            </div>
+            </form>
+
+        </div>
 
         </div>
 
@@ -86,4 +58,4 @@
 
     </div>
 
-</div>
+</div>

@@ -83,6 +83,18 @@
                 <span>Favorites</span>
             </a>
 
+            <a href="{{ route('alerts') }}"
+                class="menu-item {{ request()->routeIs('alerts') ? 'active' : '' }}">
+                <i class="fa-solid fa-bell"></i>
+                <span>Alerts & Notifications</span>
+            </a>
+
+            <a href="{{ route('settings') }}"
+                class="menu-item {{ request()->routeIs('settings') ? 'active' : '' }}">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+
         </nav>
 
     </div>
@@ -90,10 +102,23 @@
     <!-- Footer -->
     <div class="sidebar-footer">
 
-        <div class="api-status">
+        <div class="api-status mb-3">
             <span class="dot"></span>
             API Connected
         </div>
+
+        @if(auth()->check() && auth()->user()->isAdmin())
+            <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-primary w-100 mb-2 btn-sm text-start">
+                <i class="fa-solid fa-gauge me-2"></i> Admin Dashboard
+            </a>
+        @endif
+
+        <form action="{{ route('logout') }}" method="POST" class="d-block w-100">
+            @csrf
+            <button type="submit" class="btn btn-danger w-100 btn-sm text-start">
+                <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
+            </button>
+        </form>
 
     </div>
 

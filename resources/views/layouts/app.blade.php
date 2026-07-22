@@ -22,6 +22,10 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+
+    <!-- Leaflet JS & CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 
 <body>
@@ -30,9 +34,9 @@
 
     @include('components.sidebar')
 
-    <main class="main-content">
+    <main class="main-content" style="margin-left:260px; width:calc(100% - 260px); overflow-x:hidden; min-height:100vh;">
 
-        <div class="container-fluid py-4">
+        <div class="container-fluid px-4 py-4">
 
             @yield('content')
 

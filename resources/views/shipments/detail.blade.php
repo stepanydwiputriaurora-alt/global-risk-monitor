@@ -58,7 +58,12 @@ $statusColor = match($shipment->status){
                             <table class="table table-borderless align-middle">
 
                                 <tr>
-                                    <th width="180">Product</th>
+                                    <th width="180">Order Date</th>
+                                    <td>{{ $shipment->created_at->format('d M Y, H:i') }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Product</th>
                                     <td>{{ $shipment->product_name }}</td>
                                 </tr>
 
@@ -121,59 +126,33 @@ $statusColor = match($shipment->status){
 
                         </div>
 
-                        <div class="card-body">
-
-                            @if($shipment->status == 'Pending')
-
-                                <ul class="list-group list-group-flush">
-
-                                    <li class="list-group-item">✅ Shipment Created</li>
-                                    <li class="list-group-item text-warning fw-bold">🟡 Waiting for Departure</li>
-                                    <li class="list-group-item text-muted">⚪ In Transit</li>
-                                    <li class="list-group-item text-muted">⚪ Arrived Destination</li>
-                                    <li class="list-group-item text-muted">⚪ Delivered</li>
-
-                                </ul>
-
-                            @elseif($shipment->status == 'In Transit')
-
-                                <ul class="list-group list-group-flush">
-
-                                    <li class="list-group-item">✅ Shipment Created</li>
-                                    <li class="list-group-item">✅ Departed {{ $shipment->origin_port }}</li>
-                                    <li class="list-group-item fw-bold text-success">🚢 In Transit</li>
-                                    <li class="list-group-item text-muted">⚪ Arrived {{ $shipment->destination_port }}</li>
-                                    <li class="list-group-item text-muted">⚪ Delivered</li>
-
-                                </ul>
-
-                            @elseif($shipment->status == 'Arrived')
-
-                                <ul class="list-group list-group-flush">
-
-                                    <li class="list-group-item">✅ Shipment Created</li>
-                                    <li class="list-group-item">✅ Departed {{ $shipment->origin_port }}</li>
-                                    <li class="list-group-item">✅ Arrived {{ $shipment->destination_port }}</li>
-                                    <li class="list-group-item">✅ Customs Clearance</li>
-                                    <li class="list-group-item text-primary fw-bold">📦 Delivered</li>
-
-                                </ul>
-
-                            @elseif($shipment->status == 'Delayed')
-
-                                <ul class="list-group list-group-flush">
-
-                                    <li class="list-group-item">✅ Shipment Created</li>
-                                    <li class="list-group-item">✅ Departed {{ $shipment->origin_port }}</li>
-                                    <li class="list-group-item text-danger fw-bold">❌ Shipment Delayed</li>
-                                    <li class="list-group-item text-muted">⚪ Awaiting Update</li>
-                                    <li class="list-group-item text-muted">⚪ Delivered</li>
-
-                                </ul>
-
-                            @endif
-
-                        </div>
+                            <div class="timeline-container px-2 py-3">
+                                @forelse($shipment->events as $event)
+                                    <div class="d-flex mb-4 position-relative">
+                                        @if(!$loop->last)
+                                            <div class="position-absolute" style="left: 19px; top: 35px; bottom: -25px; width: 2px; background-color: #e9ecef;"></div>
+                                        @endif
+                                        
+                                        <div class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center flex-shrink-0 z-1" style="width: 38px; height: 38px;">
+                                            <i class="{{ $event->icon }}" style="font-size: 14px;"></i>
+                                        </div>
+                                        <div class="ms-3 pt-1">
+                                            <h6 class="fw-bold mb-1">{{ $event->status }}</h6>
+                                            <p class="text-muted small mb-1">
+                                                <i class="fa-solid fa-location-dot me-1 text-danger"></i> {{ $event->location }}
+                                            </p>
+                                            @if($event->description)
+                                                <p class="text-secondary small mb-1">{{ $event->description }}</p>
+                                            @endif
+                                            <small class="text-muted" style="font-size: 0.75rem;">
+                                                {{ \Carbon\Carbon::parse($event->date_time)->format('d M Y, H:i') }}
+                                            </small>
+                                        </div>
+                                    </div>
+                                @empty
+                                    <p class="text-muted text-center py-4 mb-0">Belum ada pembaruan riwayat perjalanan.</p>
+                                @endforelse
+                            </div>
 
                     </div>
 
@@ -239,9 +218,9 @@ $statusColor = match($shipment->status){
 
             <div class="mt-4">
 
-                <a href="{{ route('home') }}" class="btn btn-primary">
+                <a href="{{ route('tracking') }}" class="btn btn-primary">
 
-                    ← Back to Dashboard
+                    ← Back to Tracking
 
                 </a>
 

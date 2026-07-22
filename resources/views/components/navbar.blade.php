@@ -45,13 +45,26 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/login">
-
-                        <i class="fa-solid fa-user-shield"></i>
-
-                        Admin
-
-                    </a>
+                    @auth
+                        @if(auth()->user()->isAdmin())
+                            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                                <i class="fa-solid fa-user-shield"></i>
+                                Admin Dashboard
+                            </a>
+                        @else
+                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                @csrf
+                                <button type="submit" class="nav-link bg-transparent border-0">
+                                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                                </button>
+                            </form>
+                        @endif
+                    @else
+                        <a class="nav-link" href="{{ route('login') }}">
+                            <i class="fa-solid fa-user-shield"></i>
+                            Login
+                        </a>
+                    @endauth
                 </li>
 
             </ul>

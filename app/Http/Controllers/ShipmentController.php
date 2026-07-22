@@ -18,7 +18,7 @@ class ShipmentController extends Controller
             'tracking_number' => 'required'
         ]);
 
-        $shipment = Shipment::where(
+        $shipment = Shipment::with('events')->where(
             'tracking_number',
             $request->tracking_number
         )->first();

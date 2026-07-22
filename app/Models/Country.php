@@ -21,5 +21,13 @@ class Country extends Model
         'latitude',
         'longitude',
         'timezone',
+        'language',
+        'area',
+        'population',
     ];
+
+    public function ports()
+    {
+        return $this->hasMany(Port::class);
+    }
 }

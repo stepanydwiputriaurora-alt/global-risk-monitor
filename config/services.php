@@ -35,4 +35,15 @@ return [
         ],
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | GNews API
+    |--------------------------------------------------------------------------
+    | Register at https://gnews.io → Free tier: 100 requests/day
+    | Set GNEWS_API_KEY in your .env file
+    */
+    'gnews' => [
+        'api_key' => env('GNEWS_API_KEY'),
+    ],
+
 ];

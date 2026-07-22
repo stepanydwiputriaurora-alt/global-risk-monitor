@@ -40,7 +40,8 @@ body{
 .main-content{
     margin-left:260px;
     width:calc(100% - 260px);
-    padding:28px;
+    min-height:100vh;
+    overflow-x:hidden;
     transition:.3s ease;
 }
 
@@ -80,31 +81,18 @@ body{
 ========================================================== */
 
 .sidebar{
-
-    position:fixed;
-
-    left:0;
-
-    top:0;
-
-    width:260px;
-
-    height:100vh;
-
-    background:#ffffff;
-
-    border-right:1px solid #edf2f7;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:space-between;
-
-    padding:20px;
-
-    z-index:999;
-
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 220px;
+    height: 100vh;
+    background: #fff;
+    border-right: 1px solid #edf2f7;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+    z-index: 999;
 }
 
 .sidebar-header{
@@ -272,85 +260,32 @@ HERO
 =================================== */
 
 .hero-card{
-
     background:#fff;
-
-    border-radius:22px;
-
-    padding:24px 30px;
-
-    margin-bottom:24px;
-
-    box-shadow:0 8px 25px rgba(15,23,42,.06);
-
+    border-radius:18px;
+    padding:22px 28px;
+    margin-bottom:20px;
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
 }
 
-.hero-card h4{
-
+.hero-card h2{
+    font-size:42px;
     font-weight:700;
-
-    color:#0f172a;
-
-    margin-bottom:18px;
-
-}
-
-.hero-input{
-
-    height:48px;
-
-    border-radius:12px;
-
-    border:1px solid #dbe4f0;
-
-}
-
-.hero-input:focus{
-
-    border-color:#2563eb;
-
-    box-shadow:0 0 0 .2rem rgba(37,99,235,.12);
-
-}
-
-.hero-btn{
-
-    height:48px;
-
-    border-radius:12px;
-
-    padding:0 28px;
-
-    font-weight:600;
-
 }
 
 .hero-image-small{
-
     width:100%;
-
-    max-width:280px;
-
+    max-width:220px;
     object-fit:contain;
-
 }
 
-@media(max-width:992px){
+.hero-input{
+    height:46px;
+    border-radius:12px;
+}
 
-    .hero-card{
-
-        padding:20px;
-
-    }
-
-    .hero-image-small{
-
-        margin-top:20px;
-
-        max-width:220px;
-
-    }
-
+.hero-btn{
+    height:46px;
+    padding:0 24px;
 }
 
 /*=========================================================
@@ -358,23 +293,16 @@ HERO
 =========================================================*/
 
 .comparison-card{
-
-    border:none;
-
-    border-radius:20px;
-
-    box-shadow:0 8px 24px rgba(15,23,42,.06);
-
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(15,23,42,.05);
 }
 
 .country-select{
-
-    height:48px;
-
-    border-radius:12px;
-
-    border:1px solid #e2e8f0;
-
+    height:42px;
+    border-radius:10px;
+    font-size:15px;
+    padding:0 14px;
 }
 
 .country-select:focus{
@@ -447,7 +375,7 @@ HERO
 
 #worldMap{
     width:100%;
-    height:520px;
+    height:380px; 
     border-radius:0 0 20px 20px;
 }
 
@@ -882,6 +810,31 @@ WEATHER CARD
 
     border-bottom:none;
 
+}
+/* ==========================
+   ANALYTICS
+========================== */
+
+.analytics-card{
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(15,23,42,.06);
+}
+
+.analytics-card .card-body{
+    padding:24px;
+}
+
+.analytics-chart{
+    position: relative;
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+}
+
+.analytics-chart canvas{
+    width:100% !important;
+    height:100% !important;
 }
 
 /*=========================================================
