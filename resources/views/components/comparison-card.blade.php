@@ -217,6 +217,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         resultEl.classList.remove('d-none');
         emptyEl.classList.add('d-none');
+        
+        // Dispatch event for other components (like detailed metrics)
+        document.dispatchEvent(new CustomEvent('comparisonUpdated', { 
+            detail: { data: data } 
+        }));
     }
 
     function showError(msg) {

@@ -21,13 +21,13 @@ MAP + WEATHER
 =========================== --}}
 <div class="row g-4 mt-1">
 
-    <div class="col-xl-8 col-lg-8">
+    <div class="col-xl-8 col-lg-8 col-md-7">
 
         @include('components.map-card')
 
     </div>
 
-    <div class="col-xl-4 col-lg-4">
+    <div class="col-xl-4 col-lg-4 col-md-5">
 
         @include('components.weather-card')
 
@@ -36,18 +36,6 @@ MAP + WEATHER
 </div>
 
 
-{{-- ===========================
-COMPARISON (full width)
-=========================== --}}
-<div class="row g-4 mt-1">
-
-    <div class="col-12">
-
-        @include('components.comparison-card')
-
-    </div>
-
-</div>
 
 
 {{-- ===========================

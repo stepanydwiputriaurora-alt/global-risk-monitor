@@ -45,7 +45,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/favorites/{favorite}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
 
     // Other Pages
-    Route::view('/weather', 'weather.index')->name('weather');
+    Route::get('/weather', function () {
+        $countries = App\Models\Country::orderBy('name')->get(['name', 'latitude as lat', 'longitude as lng', 'capital']);
+        return view('weather.index', compact('countries'));
+    })->name('weather');
     Route::view('/currency', 'currency.index')->name('currency');
     Route::view('/news', 'news.index')->name('news');
     Route::view('/ports', 'ports.index')->name('ports');

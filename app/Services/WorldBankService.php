@@ -19,7 +19,7 @@ class WorldBankService
         ];
     }
 
-    private function getIndicator(string $countryCode, string $indicator): string
+    private function getIndicator(string $countryCode, string $indicator): array
     {
         $url = "{$this->baseUrl}/country/{$countryCode}/indicator/{$indicator}";
 
@@ -30,29 +30,41 @@ class WorldBankService
         ]);
 
         if (!$response->successful()) {
-            return 'N/A';
+            return ['formatted' => 'N/A', 'raw' => 0];
         }
 
         $data = $response->json();
 
         if (!isset($data[1][0]['value']) || $data[1][0]['value'] === null) {
-            return 'N/A';
+            return ['formatted' => 'N/A', 'raw' => 0];
         }
         
         $val = $data[1][0]['value'];
         
         if ($indicator === 'NY.GDP.MKTP.CD' || $indicator === 'NE.EXP.GNFS.CD' || $indicator === 'NE.IMP.GNFS.CD') {
-            return '$' . number_format($val / 1000000000000, 2) . ' T';
+            return [
+                'formatted' => '$' . number_format($val / 1000000000000, 2) . ' T',
+                'raw' => $val
+            ];
         }
         
         if ($indicator === 'FP.CPI.TOTL.ZG') {
-            return number_format($val, 1) . '%';
+            return [
+                'formatted' => number_format($val, 1) . '%',
+                'raw' => $val
+            ];
         }
         
         if ($indicator === 'SP.POP.TOTL') {
-            return number_format($val / 1000000, 1) . ' M';
+            return [
+                'formatted' => number_format($val / 1000000, 1) . ' M',
+                'raw' => $val
+            ];
         }
 
-        return number_format($val);
+        return [
+            'formatted' => number_format($val),
+            'raw' => $val
+        ];
     }
 }

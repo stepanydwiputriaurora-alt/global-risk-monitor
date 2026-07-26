@@ -10,15 +10,24 @@
                 Weather
             </h5>
 
-            <small class="text-muted" id="weather-location">
-                📍 Loading...
-            </small>
+            <div class="mt-2">
+                <select id="weather-country-select" class="form-select form-select-sm shadow-sm">
+                    @foreach($countries ?? [] as $c)
+                        <option value="{{ $c['lat'] }},{{ $c['lng'] }}" data-name="{{ $c['name'] }}" data-capital="{{ $c['capital'] }}" {{ $c['name'] === 'Indonesia' ? 'selected' : '' }}>
+                            {{ $c['name'] }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
         </div>
 
-        <span class="badge bg-success-subtle text-success">
-            Live
-        </span>
+        <div class="text-end">
+            <span class="badge bg-success-subtle text-success mb-1 d-inline-block">
+                Live
+            </span>
+            <div id="real-time-clock" class="text-muted small fw-bold">--:--:--</div>
+        </div>
 
     </div>
 
@@ -96,9 +105,6 @@
             </div>
 
         </div>
-
-        </div>
-
     </div>
 
 </div>
@@ -106,19 +112,6 @@
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Use coordinates from country context (countries page) or default to Jakarta
-        @if(isset($country) && !empty($country['latitude']) && !empty($country['longitude']))
-            const lat      = {{ $country['latitude'] }};
-            const lon      = {{ $country['longitude'] }};
-            const cityName = "{{ $country['capital'] ?? $country['name'] ?? 'Jakarta' }}";
-            const countryName = "{{ $country['name'] ?? 'Indonesia' }}";
-        @else
-            const lat      = -6.2088;
-            const lon      = 106.8456;
-            const cityName = "Jakarta";
-            const countryName = "Indonesia";
-        @endif
-
         function getWeatherIcon(code) {
             if (code === 0)               return { cls: 'fa-solid fa-sun weather-icon text-warning',               label: 'Sunny' };
             if (code >= 1 && code <= 3)   return { cls: 'fa-solid fa-cloud-sun weather-icon text-secondary',       label: 'Partly Cloudy' };
@@ -130,30 +123,69 @@
             return                               { cls: 'fa-solid fa-cloud weather-icon text-secondary',           label: 'Cloudy' };
         }
 
-        document.getElementById('weather-location').innerHTML = `📍 ${cityName}, ${countryName}`;
+        const selectEl = document.getElementById('weather-country-select');
 
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,precipitation,weather_code&timezone=auto`;
+        function fetchWeather() {
+            const selectedOption = selectEl.options[selectEl.selectedIndex];
+            if (!selectedOption || !selectedOption.value) return;
 
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.current) {
-                    const c    = data.current;
-                    const icon = getWeatherIcon(c.weather_code);
+            const coords = selectedOption.value.split(',');
+            if (coords.length !== 2) return;
 
-                    document.getElementById('weather-icon-main').className = icon.cls;
-                    document.getElementById('weather-temp').innerText      = `${c.temperature_2m}°C`;
-                    document.getElementById('weather-cond').innerText      = icon.label;
-                    document.getElementById('weather-humidity').innerText  = `${c.relative_humidity_2m}%`;
-                    document.getElementById('weather-wind').innerText      = `${c.wind_speed_10m} km/h`;
-                    document.getElementById('weather-rain').innerText      = `${c.precipitation} mm`;
-                }
-            })
-            .catch(err => {
-                console.error("Weather API error:", err);
-                document.getElementById('weather-cond').innerText = 'Unavailable';
-                document.getElementById('weather-temp').innerText = '--';
-            });
+            const lat = coords[0];
+            const lon = coords[1];
+            
+            document.getElementById('weather-cond').innerText = 'Memuat...';
+
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,precipitation,weather_code&timezone=auto`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.current) {
+                        const c    = data.current;
+                        const icon = getWeatherIcon(c.weather_code);
+                        
+                        const locationEl = document.getElementById('weather-location');
+                        if (locationEl) {
+                            locationEl.innerHTML = `📍 ${selectedOption.dataset.capital || selectedOption.dataset.name}, ${selectedOption.dataset.name}`;
+                        }
+
+                        document.getElementById('weather-icon-main').className = icon.cls;
+                        document.getElementById('weather-temp').innerText      = `${c.temperature_2m}°C`;
+                        document.getElementById('weather-cond').innerText      = icon.label;
+                        document.getElementById('weather-humidity').innerText  = `${c.relative_humidity_2m}%`;
+                        document.getElementById('weather-wind').innerText      = `${c.wind_speed_10m} km/h`;
+                        document.getElementById('weather-rain').innerText      = `${c.precipitation} mm`;
+                        
+                        // Dispatch event for other components (like map)
+                        document.dispatchEvent(new CustomEvent('weatherUpdated', { 
+                            detail: { data: c, lat: lat, lon: lon, name: selectedOption.dataset.name, icon: icon } 
+                        }));
+                    }
+                })
+                .catch(err => {
+                    console.error("Weather API error:", err);
+                    document.getElementById('weather-cond').innerText = 'Unavailable';
+                    document.getElementById('weather-temp').innerText = '--';
+                });
+        }
+
+        selectEl.addEventListener('change', fetchWeather);
+        
+        // Initial fetch
+        fetchWeather();
+
+        // Real time clock
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('real-time-clock').innerText = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
     });
 </script>
 @endpush

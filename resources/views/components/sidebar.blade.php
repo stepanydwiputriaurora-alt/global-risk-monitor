@@ -1,27 +1,25 @@
 <aside class="sidebar">
 
     <!-- Header -->
-    <div>
+    <div class="sidebar-header">
 
-        <div class="sidebar-header">
+        <a href="{{ route('dashboard') }}" class="logo">
 
-            <a href="{{ route('dashboard') }}" class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-globe"></i>
+            </div>
 
-                <div class="logo-icon">
-                    <i class="fa-solid fa-globe"></i>
-                </div>
+            <div>
+                <h4>GRM</h4>
+                <small>Global Risk Monitor</small>
+            </div>
 
-                <div>
-                    <h4>GRM</h4>
-                    <small>Global Risk Monitor</small>
-                </div>
+        </a>
 
-            </a>
+    </div>
 
-        </div>
-
-        <!-- Menu -->
-        <nav class="sidebar-menu">
+    <!-- Menu (scrollable) -->
+    <nav class="sidebar-menu">
 
             <a href="{{ route('dashboard') }}"
                 class="menu-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
@@ -83,21 +81,8 @@
                 <span>Favorites</span>
             </a>
 
-            <a href="{{ route('alerts') }}"
-                class="menu-item {{ request()->routeIs('alerts') ? 'active' : '' }}">
-                <i class="fa-solid fa-bell"></i>
-                <span>Alerts & Notifications</span>
-            </a>
 
-            <a href="{{ route('settings') }}"
-                class="menu-item {{ request()->routeIs('settings') ? 'active' : '' }}">
-                <i class="fa-solid fa-gear"></i>
-                <span>Settings</span>
-            </a>
-
-        </nav>
-
-    </div>
+    </nav>
 
     <!-- Footer -->
     <div class="sidebar-footer">
