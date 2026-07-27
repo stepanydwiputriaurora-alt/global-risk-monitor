@@ -6,6 +6,7 @@ use App\Models\Shipment;
 use App\Models\ShipmentEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Http\Controllers\PortController;
 
 class AdminShipmentController extends Controller
 {
@@ -17,7 +18,9 @@ class AdminShipmentController extends Controller
 
     public function create()
     {
-        return view('admin.shipments.create');
+        $response = app(PortController::class)->apiIndex(request());
+        $portsData = $response->getData(true)['ports'] ?? [];
+        return view('admin.shipments.create', compact('portsData'));
     }
 
     public function store(Request $request)
@@ -59,7 +62,9 @@ class AdminShipmentController extends Controller
     public function edit(string $id)
     {
         $shipment = Shipment::with('events')->findOrFail($id);
-        return view('admin.shipments.edit', compact('shipment'));
+        $response = app(PortController::class)->apiIndex(request());
+        $portsData = $response->getData(true)['ports'] ?? [];
+        return view('admin.shipments.edit', compact('shipment', 'portsData'));
     }
 
     public function update(Request $request, string $id)

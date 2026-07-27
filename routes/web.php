@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
     })->name('weather');
     Route::view('/currency', 'currency.index')->name('currency');
     Route::view('/news', 'news.index')->name('news');
+    Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
     Route::get('/ports', [PortController::class, 'index'])->name('ports');
     Route::get('/analytics', function (Illuminate\Http\Request $request) {
         $countries = App\Models\Country::orderBy('name')->get();
@@ -133,11 +134,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('/admin/shipments', \App\Http\Controllers\AdminShipmentController::class, ['as' => 'admin']);
     
     // Admin Placeholder Routes
-    Route::view('/admin/users', 'admin.users.index')->name('admin.users.index');
+    Route::resource('/admin/users', \App\Http\Controllers\AdminUserController::class, ['as' => 'admin'])->except(['show']);
     Route::get('/admin/ports', [\App\Http\Controllers\AdminPortController::class, 'index'])->name('admin.ports.index');
-    Route::post('/admin/ports/sync', [\App\Http\Controllers\AdminPortController::class, 'sync'])->name('admin.ports.sync');
-    Route::view('/admin/articles', 'admin.articles.index')->name('admin.articles.index');
-    Route::get('/admin/countries', [\App\Http\Controllers\AdminCountryController::class, 'index'])->name('admin.countries.index');
+    Route::resource('/admin/articles', \App\Http\Controllers\AdminArticleController::class, ['as' => 'admin']);
     Route::post('/admin/countries/sync', [\App\Http\Controllers\AdminCountryController::class, 'sync'])->name('admin.countries.sync');
+
     
 });

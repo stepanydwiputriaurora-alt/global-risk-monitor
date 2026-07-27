@@ -92,16 +92,16 @@
 </div>
 
 <script>
-    const countryData = {
-        'Indonesia': { region: 'SEA', ports: ['Tanjung Priok', 'Tanjung Perak', 'Belawan'] },
-        'Singapore': { region: 'SEA', ports: ['Port of Singapore', 'Jurong Port'] },
-        'Malaysia': { region: 'SEA', ports: ['Port Klang', 'Tanjung Pelepas'] },
-        'China': { region: 'EA', ports: ['Shanghai Port', 'Shenzhen Port', 'Ningbo-Zhoushan'] },
-        'Japan': { region: 'EA', ports: ['Port of Tokyo', 'Port of Yokohama'] },
-        'USA': { region: 'NA', ports: ['Port of Los Angeles', 'Port of New York', 'Port of Long Beach'] },
-        'Germany': { region: 'EU', ports: ['Port of Hamburg', 'Port of Bremen'] },
-        'Netherlands': { region: 'EU', ports: ['Port of Rotterdam', 'Port of Amsterdam'] }
-    };
+    const portsData = @json($portsData);
+    const countryData = {};
+
+    // Build countryData from portsData
+    portsData.forEach(port => {
+        if (!countryData[port.country]) {
+            countryData[port.country] = { region: port.region || 'Unknown', ports: [] };
+        }
+        countryData[port.country].ports.push(port.name);
+    });
 
     const originCountry = document.getElementById('origin_country');
     const originPort = document.getElementById('origin_port');
@@ -110,7 +110,7 @@
     const estArrival = document.querySelector('input[name="estimated_arrival"]');
 
     // Populate countries
-    Object.keys(countryData).forEach(country => {
+    Object.keys(countryData).sort().forEach(country => {
         originCountry.add(new Option(country, country));
         destCountry.add(new Option(country, country));
     });
@@ -120,7 +120,7 @@
         portSelect.innerHTML = '<option value="" disabled selected>Pilih Pelabuhan</option>';
         const selected = countrySelect.value;
         if (selected && countryData[selected]) {
-            countryData[selected].ports.forEach(port => {
+            countryData[selected].ports.sort().forEach(port => {
                 portSelect.add(new Option(port, port));
             });
         }

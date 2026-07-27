@@ -122,6 +122,20 @@ class PortController extends Controller
                     'unlo_code'    => $port['unloCode']     ?? null,
                     'nav_area'     => $port['navArea']      ?? null,
                 ];
+            } else {
+                $result[] = [
+                    'port_number'  => null,
+                    'name'         => 'Port of ' . ($country->capital ?: $country->name),
+                    'country'      => $country->name,
+                    'country_code' => $country->code,
+                    'region'       => $country->region ?? '',
+                    'latitude'     => $country->latitude,
+                    'longitude'    => $country->longitude,
+                    'harbor_size'  => 'Unknown',
+                    'harbor_type'  => 'Estimated',
+                    'unlo_code'    => null,
+                    'nav_area'     => null,
+                ];
             }
         }
 

@@ -384,8 +384,10 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             if (found && found.port.latitude != null) {
-                portMap.setView([found.port.latitude, found.port.longitude], 7, { animate: true });
+                portMap.setView([found.port.latitude, found.port.longitude], 12, { animate: true });
                 found.marker.openPopup();
+            } else {
+                alert('Data koordinat pelabuhan tidak tersedia untuk negara ini.');
             }
         });
     }
@@ -417,8 +419,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // ── Fly to port saat klik baris tabel ────────────────────────────────────────
 function flyToPort(lat, lng, name) {
-    if (lat == null || lng == null || !portMap) return;
-    portMap.setView([lat, lng], 8, { animate: true });
+    if (lat == null || lng == null || !portMap) {
+        alert('Data koordinat pelabuhan tidak tersedia.');
+        return;
+    }
+    portMap.setView([lat, lng], 12, { animate: true });
 
     const found = allMarkers.find(function (m) {
         return m.port.name === name;

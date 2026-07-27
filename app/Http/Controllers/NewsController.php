@@ -58,6 +58,25 @@ class NewsController extends Controller
             $articles = $this->fetchFromAlternativeSource($category);
         }
 
+        // Merge with manually added articles from DB
+        $dbArticles = \App\Models\Article::where('status', 'published')
+            ->where('category', $category)
+            ->latest()
+            ->get()
+            ->map(function($article) {
+                return [
+                    'title'       => $article->title,
+                    'description' => \Illuminate\Support\Str::limit(strip_tags($article->content), 150),
+                    'url'         => $article->url ?: url("/news/{$article->slug}"),
+                    'image'       => $article->image ? asset('storage/' . $article->image) : null,
+                    'publishedAt' => $article->created_at->toIso8601String(),
+                    'source'      => ['name' => $article->author ?? 'Admin'],
+                    'is_local'    => true,
+                ];
+            })->toArray();
+
+        $articles = array_merge($dbArticles, $articles);
+
         return response()->json([
             'success'  => true,
             'category' => $category,
@@ -143,5 +162,14 @@ class NewsController extends Controller
         ];
 
         return $demos[$category] ?? $demos['logistics'];
+    }
+
+    /**
+     * Show full content of a local custom article
+     */
+    public function show($slug)
+    {
+        $article = \App\Models\Article::where('slug', $slug)->firstOrFail();
+        return view('news.show', compact('article'));
     }
 }

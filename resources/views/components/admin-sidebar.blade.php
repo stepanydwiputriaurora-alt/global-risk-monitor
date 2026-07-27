@@ -47,11 +47,7 @@
                 <span>Dataset Pelabuhan</span>
             </a>
 
-            <a href="{{ route('admin.countries.index') }}"
-                class="menu-item text-light {{ request()->routeIs('admin.countries.*') ? 'active bg-primary text-white rounded' : '' }} d-flex align-items-center gap-3 p-2 mb-2 text-decoration-none">
-                <i class="fa-solid fa-earth-asia" style="width: 20px;"></i>
-                <span>Dataset Negara</span>
-            </a>
+
 
             <a href="{{ route('admin.articles.index') }}"
                 class="menu-item text-light {{ request()->routeIs('admin.articles.*') ? 'active bg-primary text-white rounded' : '' }} d-flex align-items-center gap-3 p-2 mb-2 text-decoration-none">

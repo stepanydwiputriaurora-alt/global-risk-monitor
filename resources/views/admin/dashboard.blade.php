@@ -32,7 +32,7 @@
                 </div>
                 <h5 class="fw-bold mb-2">User</h5>
                 <p class="text-muted small mb-4">Kelola hak akses pengguna, tambah, atau nonaktifkan akun.</p>
-                <button class="btn btn-primary w-100 fw-semibold">Kelola User</button>
+                <a href="{{ route('admin.users.index') }}" class="btn btn-primary w-100 fw-semibold">Kelola User</a>
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
                 </div>
                 <h5 class="fw-bold mb-2">Dataset Pelabuhan</h5>
                 <p class="text-muted small mb-4">Perbarui data statistik, status, dan informasi pelabuhan global.</p>
-                <button class="btn btn-info text-white w-100 fw-semibold">Kelola Dataset</button>
+                <a href="{{ route('admin.ports.index') }}" class="btn btn-info text-white w-100 fw-semibold">Kelola Dataset</a>
             </div>
         </div>
     </div>
@@ -66,55 +66,5 @@
     </div>
 </div>
 
-<div class="row g-4">
-    <div class="col-12">
-        <div class="card dashboard-card border-0 shadow-sm rounded-4">
-            <div class="card-header bg-transparent border-0 pt-4 px-4 pb-0">
-                <h6 class="fw-bold mb-0">Aktivitas Sistem Terakhir</h6>
-            </div>
-            <div class="card-body p-4">
-                <div class="table-responsive">
-                    <table class="table align-middle text-nowrap mb-0">
-                        <thead class="text-muted">
-                            <tr>
-                                <th class="fw-semibold">Aktivitas</th>
-                                <th class="fw-semibold">Oleh</th>
-                                <th class="fw-semibold">Waktu</th>
-                                <th class="fw-semibold text-end">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <div class="bg-primary-subtle text-primary rounded-circle p-2" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">
-                                            <i class="fa-solid fa-file-arrow-up" style="font-size: 12px;"></i>
-                                        </div>
-                                        <span>Pembaruan Dataset Shanghai Port</span>
-                                    </div>
-                                </td>
-                                <td>Admin Utama</td>
-                                <td class="text-muted">2 jam yang lalu</td>
-                                <td class="text-end"><span class="badge bg-success-subtle text-success">Berhasil</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <div class="bg-success-subtle text-success rounded-circle p-2" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">
-                                            <i class="fa-solid fa-pen-nib" style="font-size: 12px;"></i>
-                                        </div>
-                                        <span>Menerbitkan Artikel: 'Krisis Laut Merah'</span>
-                                    </div>
-                                </td>
-                                <td>Penulis Senior</td>
-                                <td class="text-muted">5 jam yang lalu</td>
-                                <td class="text-end"><span class="badge bg-success-subtle text-success">Berhasil</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 @endsection
