@@ -8,11 +8,15 @@ class ExchangeRateService
 {
     public function latest(string $base = 'USD'): array
     {
-        $response = Http::timeout(20)->get(
-            "https://open.er-api.com/v6/latest/{$base}"
-        );
+        try {
+            $response = Http::timeout(3)->get(
+                "https://open.er-api.com/v6/latest/{$base}"
+            );
 
-        if (!$response->successful()) {
+            if (!$response->successful()) {
+                return [];
+            }
+        } catch (\Exception $e) {
             return [];
         }
 

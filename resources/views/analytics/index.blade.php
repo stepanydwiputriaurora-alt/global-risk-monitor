@@ -6,6 +6,18 @@
         <h2 class="fw-bold mb-1">Analytics</h2>
         <p class="text-muted mb-0">Deep dive into data and statistics.</p>
     </div>
+    
+    <div style="min-width: 250px;">
+        <form method="GET" action="{{ route('analytics') }}" id="country-select-form">
+            <select name="country" class="form-select form-select-lg shadow-sm border-0" onchange="document.getElementById('country-select-form').submit()">
+                @foreach($countries as $c)
+                    <option value="{{ $c->name }}" {{ $selectedCountry === $c->name ? 'selected' : '' }}>
+                        {{ $c->name }}
+                    </option>
+                @endforeach
+            </select>
+        </form>
+    </div>
 </div>
 
 <div class="row g-4">

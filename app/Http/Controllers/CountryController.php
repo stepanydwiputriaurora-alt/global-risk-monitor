@@ -105,9 +105,14 @@ class CountryController extends Controller
 
             try {
                 if (!empty($country['code'])) {
-                    $economy = $this->worldBankService->getEconomicData(
+                    $rawEconomy = $this->worldBankService->getEconomicData(
                         strtolower($country['code'])
                     );
+                    foreach (['gdp', 'inflation', 'population', 'exports', 'imports'] as $key) {
+                        if (isset($rawEconomy[$key]['formatted'])) {
+                            $economy[$key] = $rawEconomy[$key]['formatted'];
+                        }
+                    }
                 }
             } catch (\Exception $e) {
                 // Biarkan $economy kosong

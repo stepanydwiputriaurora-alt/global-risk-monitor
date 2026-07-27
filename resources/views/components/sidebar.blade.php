@@ -81,7 +81,6 @@
                 <span>Favorites</span>
             </a>
 
-
     </nav>
 
     <!-- Footer -->
