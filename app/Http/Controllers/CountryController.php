@@ -166,11 +166,6 @@ class CountryController extends Controller
         // Apakah DB negara masih kosong?
         $needsSync = count($countries) === 0;
 
-    dd([
-    'countries_count' => count($countries),
-    'selectedCountry' => $selectedCountry,
-    'country' => $country,
-        ]);
         return view('countries.index', [
             'countries'   => $countries,
             'country'     => $country,
